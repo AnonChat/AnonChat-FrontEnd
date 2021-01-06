@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import './style/App.css';
 import {
   BrowserRouter as Router,
   Route,
   Link
 } from 'react-router-dom';
 
-import MyApplication from "./layout/MyApplication";
+import FlipCard from "./FlipCard/FlipCard";
 
 function App() {
   return (
     <Router>
-      <MyApplication />
+        <Route path="/login" component={FlipCard} />
     </Router>
   );
 }
