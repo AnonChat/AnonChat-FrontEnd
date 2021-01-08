@@ -1,0 +1,58 @@
+.SingIn, .SingUp{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backface-visibility: hidden;
+    background-color: white;
+  }
+.SingUp {
+    transform: rotateY(180deg);
+}
+
+header{
+    font-size: 45px;
+    font-weight: 700;
+    color: #7579ff;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top:20px;
+}
+
+form, form div{
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    margin-bottom: 10px;
+    padding: 20px 150px 20px 20px;
+    background-color: rgba(240, 240, 240, 0.651);
+    border: none;
+}
+
+.btn-sing{
+    padding: 12px 70px 12px 70px;
+    margin-top: 50px;
+    border-radius: 20px;
+    border: none;
+    background: -webkit-linear-gradient(left, #7579ff, #b224ef);
+    color:  white;
+    font-size: 17px;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn-sing:hover{
+    background: -webkit-linear-gradient(right, #7579ff, #b224ef);
+}
+
+.btn-sing2{
+    margin-top: 40px;
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+}
