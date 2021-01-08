@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+// import React from "react";
 import SingIn from './AuthFormContainer/SingIn';
 import SingUp from './AuthFormContainer/SingUp';
 import './FlipCard.css';

@@ -4,10 +4,10 @@
   }
 .maincontainer{
     position: relative;
-    top:20vh;
-    left:20vw;
-    width: 60vw;
-    height: 60vh;
+    top:15vh;
+    left:25vw;
+    width: 50vw;
+    height: 70vh;
 }
 #thecard{
     width: 100%;
