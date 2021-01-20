@@ -1,13 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { RecoilRoot } from "recoil";
+import recoilPersist from "recoil-persist";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Home from "./layout/Home/Home";
+import BoardUser from "./components/Boards/BoardUser";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
+
+const { RecoilPersist, updateState } = recoilPersist([], {
+  key: "recoil-persist",
+  storage: sessionStorage,
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <RecoilRoot initializeState={updateState}>
+    <RecoilPersist />
+    <Router>
+          <Route exact path="/" component={App} />
+          <Route path="/chat" component={Home} />
+          <Route path="/user" component={BoardUser} />
+    </Router>
+  </RecoilRoot>,
   document.getElementById('root')
 );
 

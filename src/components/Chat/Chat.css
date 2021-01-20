@@ -1,0 +1,33 @@
+.chat-container{
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.messages{
+    height: 90%;
+    background-color: white;
+}
+.message-panel{
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+    width: 100%;
+    background-color: rgb(248, 247, 247);
+    box-shadow: 0px -3px 5px 0px rgba(201,199,201,1);
+}
+.message{
+    margin:0;
+    border: none;
+    width: 80%;
+    background: transparent;
+    outline: none;
+}
+.bSend{
+    border: none;
+    background-color: #20adbe;
+    outline: none;
+    width: 20%;
+    height: 100%;
+    cursor: pointer;
+}

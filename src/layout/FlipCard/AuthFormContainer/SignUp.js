@@ -48,7 +48,7 @@ const vpassword = (value) => {
     }
 };
 
-function SingUp(props) {
+function SignUp(props) {
     const form = useRef();
     const checkBtn = useRef();
 
@@ -109,7 +109,7 @@ function SingUp(props) {
 
     return (
         <div className="SingUp">
-            <header>Sing up to AnonChat</header>
+            <header>Sign up to AnonChat</header>
             <Form onSubmit={handleRegister} ref={form}>
                 {!successful && (
                     <div>
@@ -164,4 +164,4 @@ function SingUp(props) {
     );
 }
   
-export default SingUp;
+export default SignUp;
