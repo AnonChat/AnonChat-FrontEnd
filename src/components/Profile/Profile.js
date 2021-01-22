@@ -33,8 +33,9 @@ function Profile(props) {
     useEffect(() => {
         profileApi.getUserProfile().then(
             (response) => {
-                setUsername(response.data.username)
+                setUsername(response.data.username);
                 setEmail(response.data.email);
+                console.log(response.data.profilePicture);
                 setprofilePicture(response.data.profilePicture);
             })
     }, []);

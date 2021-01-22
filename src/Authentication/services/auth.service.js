@@ -18,6 +18,8 @@ const login = (username, password) => {
     })
     .then((response) => {
       if (response.data.token) {
+        console.log(response.data);
+        console.log(response.data.profilePicture);
         localStorage.setItem("user", JSON.stringify(response.data));
       }
       return response.data;
