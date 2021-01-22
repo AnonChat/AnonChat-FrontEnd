@@ -19,7 +19,8 @@ import './Chat.css';
 
 var stompClient = null;
 function Chat(props) {
-    const currentUser = AuthService.getCurrentUser();
+    // const current = AuthService.getCurrentUser();
+    const [currentUser, setCurrentUser] = useState(AuthService.getCurrentUser());
     const [text, setText] = useState("");
     const [contacts, setContacts] = useState([]);
     const [activeContact, setActiveContact] = useRecoilState(chatActiveContact);
@@ -129,7 +130,7 @@ function Chat(props) {
           <div className="LeftSide">
             <div className="User">
               <div className="image-cropper">
-                <img className="image-to-cropp" src={currentUser.profilePicture && currentUser.profilePicture !== "" && currentUser.profilePicture !== null ? currentUser.profilePicture : 'https://www.ctcmath.com/assets/images/placeholder-user.jpg'}></img>
+                <img className="image-to-cropp" src={currentUser && currentUser.profilePicture && currentUser.profilePicture !== "" && currentUser.profilePicture !== undefined ? currentUser.profilePicture : 'https://www.ctcmath.com/assets/images/placeholder-user.jpg'}></img>
               </div>
               <p className="Username">{currentUser.username}</p>
             </div>
@@ -148,7 +149,7 @@ function Chat(props) {
                   >
                     <div className="wrap">
                       <div className="image-cropper">
-                        <img className="image-to-cropp" src={contact.profilePicture && contact.profilePicture !== null && contact.profilePicture !== "" ? contact.profilePicture : 'https://www.ctcmath.com/assets/images/placeholder-user.jpg'}></img>
+                        <img className="image-to-cropp" src={contact.profilePicture && contact.profilePicture !== undefined && contact.profilePicture !== "" ? contact.profilePicture : 'https://www.ctcmath.com/assets/images/placeholder-user.jpg'}></img>
                       </div>
                       <p className="Username">{contact.username}</p>
                     </div>
@@ -171,11 +172,10 @@ function Chat(props) {
           </div>
           <div className="RightSide">
             <div className="CurrentFriend">
-              {/* <img src={activeContact && activeContact.profilePicture} alt="" /> */}
               <div className="image-cropper">
-                <img className="image-to-cropp" src={activeContact.profilePicture !== "" && activeContact.profilePicture !== null ? activeContact.profilePicture : 'https://www.ctcmath.com/assets/images/placeholder-user.jpg'}></img>
+                <img className="image-to-cropp" src={activeContact && activeContact.profilePicture && activeContact.profilePicture !== undefined ? activeContact.profilePicture : 'https://www.ctcmath.com/assets/images/placeholder-user.jpg'}></img>
               </div>
-              <p>({activeContact && activeContact.username})</p>
+              <p>{activeContact && activeContact.username}</p>
             </div>
             <ScrollToBottom className="MessegesArea">
                 <ul>
