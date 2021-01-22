@@ -1,0 +1,20 @@
+.home-container{
+    min-height: 100vh;
+    background: -webkit-linear-gradient(left, #7579ff, #b224ef);
+}
+.main-container{
+    position: relative;
+    top:15vh;
+    left:20vw;
+    width: 60vw;
+    height: 70vh;
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+.left-panel{
+    width: 30%;
+    height: 100%;
+    background-color: white;
+    border-right: groove;
+}

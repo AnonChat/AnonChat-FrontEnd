@@ -48,7 +48,7 @@ const vpassword = (value) => {
     }
 };
 
-function SingUp(props) {
+function SignUp(props) {
     const form = useRef();
     const checkBtn = useRef();
 
@@ -108,8 +108,9 @@ function SingUp(props) {
     };
 
     return (
-        <div className="SingUp">
-            <header>Sing up to AnonChat</header>
+        <div className="SignUp">
+            <img src={`${process.env.PUBLIC_URL}/img/logo.png`}/>
+            <header>Sign up to AnonChat</header>
             <Form onSubmit={handleRegister} ref={form}>
                 {!successful && (
                     <div>
@@ -143,7 +144,7 @@ function SingUp(props) {
                             placeholder="Password"
                         />
 
-                        <button className="btn-sing">Sign Up</button>
+                        <button className="btn-sign">Sign Up</button>
                     </div>
                 )}
 
@@ -159,9 +160,9 @@ function SingUp(props) {
                 )}
                 <CheckButton style={{ display: "none" }} ref={checkBtn} />
             </Form>
-            <button className="btn-sing2" onClick={changeSide}>Already have an account ? Sing in</button>
+            <button className="btn-sign2" onClick={changeSide}>Already have an account ? Sing in</button>
         </div>
     );
 }
   
-export default SingUp;
+export default SignUp;

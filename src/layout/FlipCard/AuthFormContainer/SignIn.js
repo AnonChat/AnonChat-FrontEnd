@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
+import { useHistory } from "react-router-dom";
 
 import AuthService from "../../../Authentication/services/auth.service";
 
@@ -17,7 +18,7 @@ const required = (value) => {
     }
 };
 
-function SingIn(props) {
+function SignIn(props) {
 
     const form = useRef();
     const checkBtn = useRef();
@@ -26,7 +27,9 @@ function SingIn(props) {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
-  
+
+    let history = useHistory();
+
     const onChangeUsername = (e) => {
       const username = e.target.value;
       setUsername(username);
@@ -37,7 +40,7 @@ function SingIn(props) {
       setPassword(password);
     };
   
-    const handleLogin = (e) => {
+    const handleLogin =(e) => {
       e.preventDefault();
   
       setMessage("");
@@ -48,7 +51,7 @@ function SingIn(props) {
       if (checkBtn.current.context._errors.length === 0) {
         AuthService.login(username, password).then(
           () => {
-            props.history.push("/profile");
+            history.push("/chat");
             window.location.reload();
           },
           (error) => {
@@ -74,8 +77,9 @@ function SingIn(props) {
     };
 
     return (
-        <div className="SingIn">
-            <header>Sing in to AnonChat</header>
+        <div className="SignIn">
+            <img src={`${process.env.PUBLIC_URL}/img/logo.png`}/>
+            <header>Sign in to AnonChat</header>
             <Form onSubmit={handleLogin} ref={form}>
                 <Input
                     type="text"
@@ -96,11 +100,11 @@ function SingIn(props) {
                     placeholder="Password"
                 />
 
-                <button className="btn-sing" disabled={loading}>
+                <button className="btn-sign" disabled={loading}>
                     {loading && (
                         <span className="spinner-border spinner-border-sm"></span>
                     )}
-                    <span>Sing In</span>
+                    <span>Sign In</span>
                 </button>
 
                 {message && (
@@ -112,9 +116,9 @@ function SingIn(props) {
                 )}
                 <CheckButton style={{ display: "none" }} ref={checkBtn} />
             </Form>
-            <button className="btn-sing2" onClick={changeSide}>Don't have an account? Sing up </button>
+            <button className="btn-sign2" onClick={changeSide}>Don't have an account? Sign up </button>
         </div>
     );
 }
   
-export default SingIn;
+export default SignIn;

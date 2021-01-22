@@ -1,6 +1,7 @@
-// import React from "react";
-import SingIn from './AuthFormContainer/SingIn';
-import SingUp from './AuthFormContainer/SingUp';
+import React, { useState, useEffect } from "react";
+import SignIn from './AuthFormContainer/SignIn';
+import SignUp from './AuthFormContainer/SignUp';
+import AuthService from "../../Authentication/services/auth.service";
 import './FlipCard.css';
   
 function FlipCard() {
@@ -8,12 +9,12 @@ function FlipCard() {
         <div className="FlipCard">
             <div className="maincontainer">
                 <div id="thecard">
-                    <SingIn></SingIn>
-                    <SingUp></SingUp>
+                    <SignIn />
+                    <SignUp />
                 </div>
             </div>
         </div>
     );
-}
+};
   
 export default FlipCard;
