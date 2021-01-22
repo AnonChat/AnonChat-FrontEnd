@@ -1,0 +1,102 @@
+.profile {
+    background-color: -webkit-linear-gradient(left, #20adbe, #20bed7);
+    width: 100vw;
+    height: 100vh;
+}
+.frame {
+    position: relative;
+    background-color: white;
+    top:10vh;
+    left:25vw;
+    width: 50vw;
+    height: auto;
+    padding-bottom: 40px;
+    padding-top: 30px;
+}
+
+.frame .image-cropper {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    margin-right: auto;
+    margin-left: auto;
+    overflow: hidden;
+    border-radius: 50%;
+}
+  
+.image-to-cropp {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.formGroup {
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+.formLabel { 
+    text-align: center;
+    width: 100%;   
+    font-size: 20px;
+}
+
+.formInput {
+    margin-right: auto;
+    margin-left: auto;
+    width: 70%;
+}
+
+.btnELO {
+    margin-right: auto;
+    margin-left: auto;
+    width: 50%;
+    padding: 12px 70px 12px 70px;
+    margin-top: 50px;
+    border-radius: 20px;
+    border: none;
+    background: -webkit-linear-gradient(left, #20adbe, #20bed7);
+    color:  white;
+    font-size: 17px;
+    outline: none;
+    cursor: pointer;
+}
+
+.btnELO:hover {
+    background: -webkit-linear-gradient(right, #20adbe, #20bed7);
+}
+
+.buttonBack {
+    position: relative;
+    margin-top: 40px;
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    color: #bbbbbb;
+    left: calc(50% - 50px);
+    width: 100px;
+}
+
+.buttonBack:hover {
+    color: #2e2e2e;
+}
+
+.profile button {
+    border-width: 0;
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.profile h1 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: -10px;
+}

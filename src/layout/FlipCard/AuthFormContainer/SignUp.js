@@ -108,7 +108,8 @@ function SignUp(props) {
     };
 
     return (
-        <div className="SingUp">
+        <div className="SignUp">
+            <img src={`${process.env.PUBLIC_URL}/img/logo.png`}/>
             <header>Sign up to AnonChat</header>
             <Form onSubmit={handleRegister} ref={form}>
                 {!successful && (
@@ -143,7 +144,7 @@ function SignUp(props) {
                             placeholder="Password"
                         />
 
-                        <button className="btn-sing">Sign Up</button>
+                        <button className="btn-sign">Sign Up</button>
                     </div>
                 )}
 
@@ -159,7 +160,7 @@ function SignUp(props) {
                 )}
                 <CheckButton style={{ display: "none" }} ref={checkBtn} />
             </Form>
-            <button className="btn-sing2" onClick={changeSide}>Already have an account ? Sing in</button>
+            <button className="btn-sign2" onClick={changeSide}>Already have an account ? Sing in</button>
         </div>
     );
 }

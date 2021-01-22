@@ -14,6 +14,7 @@ import {
 } from "./util";
 import AuthService from "../../Authentication/services/auth.service";
 import ScrollToBottom from "react-scroll-to-bottom";
+import { useHistory } from "react-router-dom";
 import './Chat.css';
 
 var stompClient = null;
@@ -22,18 +23,17 @@ function Chat(props) {
     const [text, setText] = useState("");
     const [contacts, setContacts] = useState([]);
     const [activeContact, setActiveContact] = useRecoilState(chatActiveContact);
-    const [messages, setMessages] = useRecoilState(chatMessages);
-
+    const [messages, setMessages] = useRecoilState(chatMessages)
+    let history = useHistory();
+    
     useEffect(() => {
-        // if (localStorage.getItem("accessToken") === null) {
-        //   props.history.push("/login");
-        // }
         connect();
         loadContacts();
     }, []);
 
     useEffect(() => {
         if (activeContact === undefined) return;
+        setText("");
         findChatMessages(activeContact.id, currentUser.id).then((msgs) =>
           setMessages(msgs)
         );
@@ -77,14 +77,14 @@ function Chat(props) {
           message.info("Received a new message from " + notification.senderName);
         }
         loadContacts();
-    };   
+    };
 
     const sendMessage = (msg) => {
         if (msg.trim() !== "") {
           const message = {
             senderId: currentUser.id,
             recipientId: activeContact.id,
-            senderName: currentUser.name,
+            senderName: currentUser.username,
             recipientName: activeContact.name,
             content: msg,
             timestamp: new Date(),
@@ -115,41 +115,115 @@ function Chat(props) {
           })
         );
     };
-
+    const logout=()=>{
+      AuthService.logout();
+      history.push("/login");
+    }
+    const profile=()=>{
+      history.push("/profile");
+    }
+    
     return (
-        <div className="chat-container">
-            <ScrollToBottom className="messages">
+      <div className="ChatWindow">
+        <div className="Chat">
+          <div className="LeftSide">
+            <div className="User">
+              <div className="image-cropper">
+                <img className="image-to-cropp" src={currentUser.profilePicture && currentUser.profilePicture !== "" && currentUser.profilePicture !== null ? currentUser.profilePicture : 'https://www.ctcmath.com/assets/images/placeholder-user.jpg'}></img>
+              </div>
+              <p className="Username">{currentUser.username}</p>
+            </div>
+            <div className="Line"></div>
+            <ScrollToBottom className="Friends">
+              <ul>
+                {contacts.map((contact) => (
+                  <li
+                    key={contact.id}
+                    onClick={() => setActiveContact(contact)}
+                    className={
+                      (activeContact && (contact.id === activeContact.id))
+                        ? "active"
+                        : "contact"
+                    }
+                  >
+                    <div className="wrap">
+                      <div className="image-cropper">
+                        <img className="image-to-cropp" src={contact.profilePicture && contact.profilePicture !== null && contact.profilePicture !== "" ? contact.profilePicture : 'https://www.ctcmath.com/assets/images/placeholder-user.jpg'}></img>
+                      </div>
+                      <p className="Username">{contact.username}</p>
+                    </div>
+                    <div className="MessegeAlert">
+                      {contact.newMessages !== undefined && contact.newMessages > 0 && (
+                            <p className="preview">{contact.newMessages} new messages</p>)}
+                    </div>    
+                  </li>
+                ))}
+              </ul>
+            </ScrollToBottom>
+            <div className="Bottom">
+              <button className="AddContact" onClick={profile}>
+                <span>Profile</span>
+              </button>
+              <button className="LogOut" onClick={logout}>
+                <span>Logout</span>
+              </button>
+            </div>
+          </div>
+          <div className="RightSide">
+            <div className="CurrentFriend">
+              {/* <img src={activeContact && activeContact.profilePicture} alt="" /> */}
+              <div className="image-cropper">
+                <img className="image-to-cropp" src={activeContact.profilePicture !== "" && activeContact.profilePicture !== null ? activeContact.profilePicture : 'https://www.ctcmath.com/assets/images/placeholder-user.jpg'}></img>
+              </div>
+              <p>({activeContact && activeContact.username})</p>
+            </div>
+            <ScrollToBottom className="MessegesArea">
                 <ul>
-                    {messages.map((msg) => (
-                        <li class={msg.senderId === currentUser.id ? "sent" : "replies"}>
-                            <p>{msg.content}</p>
+                    {messages && messages.map((msg) => (
+                        <li className={msg.senderId === currentUser.id ? "sent" : "replies"}>
+                          <div className="wrap">
+                            {msg.senderId === currentUser.id ? "" : (
+                              <div className="image-cropper">
+                                <img className="image-to-cropp" src={activeContact.profilePicture !== "" && activeContact.profilePicture !== null ? activeContact.profilePicture : 'https://www.ctcmath.com/assets/images/placeholder-user.jpg'}></img>
+                            </div>
+                            )}
+                              <p>{msg.content}</p>
+                          </div>
                         </li>
                     ))}
                 </ul>
             </ScrollToBottom>
-            <div className="message-panel">
-                <input
-                    name="user_input"
-                    className="message" 
-                    placeholder="Type a message..." 
-                    onChange={(event) => setText(event.target.value)}
-                    onKeyPress={(event) => {
-                      if (event.key === "Enter") {
-                        sendMessage(text);
-                        setText("");
-                      }
-                    }}
-                />
-                <button className="bSend" 
-                    onClick={() => {
+            <div className="WriteMessegePannel">
+              <textarea 
+                  name="user_input"
+                  className="MessegesInput" 
+                  placeholder="Type a messege..."
+                  value={text}
+                  onChange={(event) => setText(event.target.value)}
+                  onKeyPress={(event) => {
+                    if (event.key === "Enter") {
+                      sendMessage(text);
+                      setText("");
+                    }
+                  }}
+              />
+              <button className="ButtonSend" 
+                  onClick={() => {
+                    setText(" ");
+                    console.log(text);
                     sendMessage(text);
-                    setText("") 
-                    }}>
-                    Send
-                </button>
+                  }}>
+                  Send
+              </button>
             </div>
+          </div>
         </div>
-    );
+        <div className="Footer">
+              <p>Powered proudly by</p>
+              <img src={`${process.env.PUBLIC_URL}/img/fullLogo.png`}/>
+          </div>
+      </div>
+  );
 }
 
 export default Chat;

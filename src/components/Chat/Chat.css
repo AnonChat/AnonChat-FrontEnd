@@ -1,33 +1,302 @@
-.chat-container{
-    width: 70%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-.messages{
-    height: 90%;
+.ChatWindow {
     background-color: white;
+    min-height: 100vh;
+    min-width: 100vw;
 }
-.message-panel{
+
+.Chat {
+    position: relative;
+    top:5vh;
+    left:15vw;
+    width: 70vw;
+    height: 85vh;
     display: flex;
-    flex-direction: row;
-    height: 10%;
+    border-radius: 40px;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.LeftSide {
+    width: 400px;
+    background: #20bed7;
+    border-radius: 40px 0 0 40px;
+}
+
+.RightSide {
+    margin: 0;
     width: 100%;
-    background-color: rgb(248, 247, 247);
-    box-shadow: 0px -3px 5px 0px rgba(201,199,201,1);
-}
-.message{
-    margin:0;
-    border: none;
-    width: 80%;
-    background: transparent;
-    outline: none;
-}
-.bSend{
-    border: none;
+    max-width: 100%;
     background-color: #20adbe;
-    outline: none;
-    width: 20%;
+    border-radius: 0 40px 40px 0;
+}
+
+/*User top-left corner*/
+.User {
+    display: flex;
+    height: 110px;
+    border-radius: 40px 0 0 0;
+    padding: 20px;
+}
+
+.User .image-cropper {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+  
+.image-to-cropp {
+    display: inline;
+    margin: 0 auto;
     height: 100%;
+    width: auto;
+}
+
+.User .Username {
+    margin-left: 20px;
+    margin-top: 10px;
+    color: #f9f9f9;
+    font-size: 30px;
+}
+
+/*Line between user and friends*/
+.Line {
+    width: 200px;
+    margin-left: 50px;
+    height: 2px;
+    border-radius: 2px;
+    background-color: #20adbe;
+    margin-bottom: 15px;
+}
+
+/*Friends left side*/
+.Friends {
+    height: calc(100% - 177px);    
+}
+
+.Friends .image-cropper {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.Friends ul {
+    margin: 0;
+    padding: 0;
+}
+
+.Friends li {
+    list-style-type: none;
     cursor: pointer;
+    padding: 10px;
+}
+
+.Friends li:hover {
+    background-color: #20adbe;
+}
+
+.Friends .wrap {
+    display: flex;
+    padding-left: 5px;
+}
+
+.Friends p {
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: 20px;
+    color: #f9f9f9;
+}
+
+.Friends .active {
+    background: #20adbe;
+    border-right: 15px solid #1c9caa;
+}
+
+.Friends .preview {
+    font-size: 15px;
+    color: rgb(133, 255, 133);
+    margin: 0;
+    margin-left: 80px;
+    margin-top: -20px;
+    font-style: italic;
+}
+
+/*buttons left-bottom corner*/
+.Bottom {
+    margin: 0;
+    height: 50px;
+}
+
+.Bottom button {
+    width: 50%;
+    color: #f9f9f9;
+    height: 50px;
+    cursor: pointer;
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background-color: #20adbe;
+}
+
+.Bottom button:hover {
+    background-color: #1c9caa;
+}
+
+.Bottom .AddContact {
+    border-radius: 0 0 0 40px;
+}
+
+/*Current friend top of chat*/
+.CurrentFriend {
+    padding: 10px;
+    height: 70px;
+    display: flex;
+}
+
+.CurrentFriend .image-cropper {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.CurrentFriend p {
+    color: #fdfdfd;
+    padding-top: 12px;
+    font-size: large;
+    padding-left: 4px;
+}
+
+/*Messege main area of chat*/
+.MessegesArea {
+    background-color: #ffffff;
+    height: calc(100% - 120px);
+}
+
+.MessegesArea ul {
+    margin: 0;
+    padding: 0;
+}
+
+.Friends li {
+    
+    padding: 10px;
+}
+.MessegesArea .wrap {
+    display: flex;
+}
+
+.MessegesArea .image-cropper {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    margin-top: 10px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.MessegesArea .replies {
+    max-width: 70%;
+    width: fit-content;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    list-style-type: none;
+}
+
+.MessegesArea .replies p {
+    background: #eeeeee;
+    margin-left: 10px;
+    border-radius: 20px;
+    color: #2e2e2e;
+    margin-top: 0;
+}
+
+.MessegesArea .sent {
+    background: #20bed7;
+    color: #f9f9f9;
+    border-radius: 20px;
+    max-width: 50%;
+    width: fit-content;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: auto;
+    list-style-type: none;
+}
+
+.MessegesArea p {
+    display: block;
+    margin: 1px;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    max-width: 100%;
+    padding: 10px;
+}
+
+/*Write messege pannel at bottom of chat*/
+.WriteMessegePannel {
+    height: 50px;
+    width: 100%;
+    display: flex;
+}
+
+.WriteMessegePannel textarea {
+    background-color: #eeeeee;
+    padding: 13px;
+    width: calc(100% - 80px);
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.WriteMessegePannel button {
+    width: 80px;
+    color: #f9f9f9;
+    height: 50px;
+    cursor: pointer;
+    background-color: #20adbe;
+    border-width: 0;
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.WriteMessegePannel .ButtonSend {
+    border-radius: 0 0 40px 0;
+}
+
+.WriteMessegePannel button:hover {
+    background-color: #20bed7;
+}
+
+/*footer*/
+.Footer {
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+}
+
+.Footer img {
+    padding-left: 10px;
+    height: 20px;
+    width: 110px;
 }

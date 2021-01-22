@@ -12,6 +12,9 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import FlipCard from './layout/FlipCard/FlipCard';
+import * as serviceWorker from "./serviceWorker";
+import Profile from './components/Profile/Profile';
 
 const { RecoilPersist, updateState } = recoilPersist([], {
   key: "recoil-persist",
@@ -23,7 +26,9 @@ ReactDOM.render(
     <RecoilPersist />
     <Router>
           <Route exact path="/" component={App} />
+          <Route path="/login" component={FlipCard} />
           <Route path="/chat" component={Home} />
+          <Route path="/profile" component={Profile} />
           <Route path="/user" component={BoardUser} />
     </Router>
   </RecoilRoot>,
@@ -34,3 +39,4 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+serviceWorker.unregister();

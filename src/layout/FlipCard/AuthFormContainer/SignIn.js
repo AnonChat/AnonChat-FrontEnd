@@ -29,7 +29,7 @@ function SignIn(props) {
     const [message, setMessage] = useState("");
 
     let history = useHistory();
-  
+
     const onChangeUsername = (e) => {
       const username = e.target.value;
       setUsername(username);
@@ -77,7 +77,8 @@ function SignIn(props) {
     };
 
     return (
-        <div className="SingIn">
+        <div className="SignIn">
+            <img src={`${process.env.PUBLIC_URL}/img/logo.png`}/>
             <header>Sign in to AnonChat</header>
             <Form onSubmit={handleLogin} ref={form}>
                 <Input
@@ -99,7 +100,7 @@ function SignIn(props) {
                     placeholder="Password"
                 />
 
-                <button className="btn-sing" disabled={loading}>
+                <button className="btn-sign" disabled={loading}>
                     {loading && (
                         <span className="spinner-border spinner-border-sm"></span>
                     )}
@@ -115,7 +116,7 @@ function SignIn(props) {
                 )}
                 <CheckButton style={{ display: "none" }} ref={checkBtn} />
             </Form>
-            <button className="btn-sing2" onClick={changeSide}>Don't have an account? Sign up </button>
+            <button className="btn-sign2" onClick={changeSide}>Don't have an account? Sign up </button>
         </div>
     );
 }

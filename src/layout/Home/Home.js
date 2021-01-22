@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useEffect, useState} from "react";
 import './Home.css';
 
 import Chat from "../../components/Chat/Chat";
+import { useHistory } from "react-router-dom";
+import authService from "../../Authentication/services/auth.service";
 
-function Home() {
+function Home(props) {
+    const [currentUser, setCurrentUser] = useState(authService.getCurrentUser());
+    let history = useHistory();
 
-    return (
-        <div className="home-container">
-            <div className="main-container">
-                <div className="left-panel">
-                </div>
-                <Chat />
-            </div>
-        </div>
-    );
+    useEffect(() => {
+        if(!currentUser){
+            history.push("/login");
+        }
+    }, []);
+
+    return currentUser ? (<Chat />
+    ) : null
 }
 
 export default Home;

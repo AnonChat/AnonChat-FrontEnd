@@ -1,18 +1,54 @@
-.FlipCard{
-    min-height: 100vh;
-    background: -webkit-linear-gradient(left, #7579ff, #b224ef);
+body{
+    background: -webkit-linear-gradient(left, #20adbe, #20bed7);
   }
 .maincontainer{
     position: relative;
-    top:15vh;
+    top:10vh;
     left:25vw;
     width: 50vw;
-    height: 70vh;
+    height: auto;
+    padding-bottom: 40px;
 }
 #thecard{
+    min-height: 700px;
     width: 100%;
     height: 100%;
-    transition: transform 2s ease-in-out;
+    transition: transform .6s ease-in-out;
     transform-style: preserve-3d;
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    margin-bottom: 20px;
+}
+
+.SignIn img, .SignUp img {
+    padding-top: 20px;
+    width: 100px;
+    height: 100px;
+}
+
+.alert-danger {
+    padding: 2px;
+    color: red;
+    margin-bottom: 5px;
+    margin-top: -5px;
+}
+
+.form-group .alert-danger {
+    margin-top: -100px;
+}
+
+@media(max-width: 1000px) {
+    body{
+        background: white;
+      }
+    .maincontainer{
+        position: relative;
+        top:0;
+        left:0;
+        width: 100%;
+        height: auto;
+        padding-bottom: 0;
+    }
+    #thecard {
+        box-shadow: none;
+    }
 }

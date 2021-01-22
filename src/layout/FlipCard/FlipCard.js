@@ -5,18 +5,6 @@ import AuthService from "../../Authentication/services/auth.service";
 import './FlipCard.css';
   
 function FlipCard() {
-    const [currentUser, setCurrentUser] = useState(undefined);
-
-    useEffect(() => {
-        const user = AuthService.getCurrentUser();
-
-        if (user) {
-            setCurrentUser(user);
-            // setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-            // setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-        }
-    }, []);
-
     return (
         <div className="FlipCard">
             <div className="maincontainer">
